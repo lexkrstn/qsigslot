@@ -17,14 +17,19 @@ public:
 class Receiver
 {
 public:
-    Slot<void(int, int)> clickSlot;
+    Slot<void(int, int)> clickSlot1;
+    Slot<void(int, int)> clickSlot2;
 
     Receiver()
-        : clickSlot(this, &Receiver::onClick)
-    {
+        : clickSlot1(this, &Receiver::onClick)
+        , clickSlot2(this, &Receiver::onClick)
+    { }
+
+    void onClick(int x, int y) {
+        std::cout << "x = " << x << " y = " << y << std::endl;
     }
 
-    void onClick(int x, int y) const {
+    void onConstClick(int x, int y) const {
         std::cout << "x = " << x << " y = " << y << std::endl;
     }
 };
@@ -32,7 +37,8 @@ public:
 int main(int argc, char** argv) {
     Receiver receiver;
     Emitter emitter;
-    emitter.click.bind(receiver.clickSlot);
+    emitter.click.bind(receiver.clickSlot1);
+    emitter.click.bind(receiver.clickSlot2);
     emitter.click(1, 2);
 
     Signal<void(const char*)> click;

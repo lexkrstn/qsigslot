@@ -9,10 +9,12 @@ template <typename T> class ConstMethodFunctor;
 
 template <typename C, typename R, typename ...Args>
 class ConstMethodFunctor<R(C::*)(Args...)> : public Functor<R(Args...)> {
-    const C* object;
-    mutable R(C::*method)(Args...) const;
+    using Method = R(C::*)(Args...) const;
+
+    const C* const object;
+    Method const method;
 public:
-    ConstMethodFunctor(const C *object, R(C::*method)(Args...)const)
+    ConstMethodFunctor(const C* object, const Method method)
         : object(object)
         , method(method)
     {}
