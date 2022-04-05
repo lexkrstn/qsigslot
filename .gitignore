@@ -1,3 +1,4 @@
 /build/*.o
 /build/test
 /build/test.exe
+.DS_Store
