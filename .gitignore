@@ -1,0 +1,3 @@
+/build/*.o
+/build/test
+/build/test.exe
