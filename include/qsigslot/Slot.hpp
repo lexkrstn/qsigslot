@@ -24,6 +24,8 @@ class Slot<R(Args...)>
     friend class Signal<R(Args...)>;
 
 public:
+    Slot(const Slot&) = delete;
+    Slot& operator = (const Slot&) = delete;
 
     Slot(R(*fn)(Args... args))
         : signal(nullptr)

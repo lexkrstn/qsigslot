@@ -14,6 +14,9 @@ class FunctionFunctor<R(Args...)> : public Functor<R(Args...)>
 
     Fn const fn;
 public:
+    FunctionFunctor(const FunctionFunctor&) = delete;
+    FunctionFunctor& operator = (const FunctionFunctor&) = delete;
+
     FunctionFunctor(const Fn fn) : fn(fn) {}
 
     virtual R operator()(Args... args) override

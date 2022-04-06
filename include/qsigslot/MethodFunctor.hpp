@@ -15,6 +15,9 @@ class MethodFunctor<R(C::*)(Args...)> : public Functor<R(Args...)>
     C* const object;
     Method const method;
 public:
+    MethodFunctor(const MethodFunctor&) = delete;
+    MethodFunctor& operator = (const MethodFunctor&) = delete;
+
     MethodFunctor(C* object, Method method)
         : object(object)
         , method(method)

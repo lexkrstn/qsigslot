@@ -13,6 +13,9 @@ class Signal<R(Args...)>
     Slot<R(Args...)>* first;
 
 public:
+    Signal(const Signal&) = delete;
+    Signal& operator = (const Signal&) = delete;
+
     Signal() {
         first = nullptr;
     }
